@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <!-- <script src="{{ url_for('static', filename='css/style.css') }}" > </script> -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article</title>
+
+    <script>
+      var test_type = 0;
+      /*
+       * type
+       *      0 : mytalk
+       *      1 : othertalk
+       */
+      function showMessage(type, name, msg) {
+        var container = document.getElementById("main-container");
+        var container_msg = container.getElementsByClassName("chat")[0];
+
+        var newmsg = document.createElement("div");
+        var newblank = document.createElement("div");
+
+        if (type) {
+          if (msg === "뉴스") {
+            //showArticle(name, msg);
+            newmsg.className = "othertalk";
+            newmsg.innerHTML =
+              '<div class="box" style="width:40%">\n' +
+              '<div class="profile_name">\n' +
+              name +
+              "\n" +
+              "</div>\n" +
+              '<div class="a">\n' +
+              "</div>\n" +
+              '<div class="b" style="padding:0; overflow: hidden;">\n' +
+              '<img src="{{source}}" />\n' +
+              '<div class="theme-box">{{theme[0]}}</div>\n' +
+              '<div class="btn-container">\n' +
+              '<button type="button" class="summarization-btn" onclick="articleSumm()">기사 요약</button>\n' +
+              '<button type="button" class="articleUrl-btn" onclick="goToWeb()">원문 보기</button>\n' +
+              "</div>\n" +
+              "</div>\n" +
+              "</div>\n";
+          } else {
+            newmsg.className = "othertalk";
+            newmsg.innerHTML =
+              '<div class="box">\n' +
+              '<div class="profile_name">\n' +
+              name +
+              "\n" +
+              "</div>\n" +
+              '<div class="a">\n' +
+              "</div>\n" +
+              '<div class="b">\n' +
+              msg +
+              "\n" +
+              "</div>\n" +
+              "</div>\n";
+          }
+        } else {
+          newmsg.className = "mytalk";
+          newmsg.innerHTML =
+            '<div class="b">\n' +
+            "</div>\n" +
+            '<div class="a">\n' +
+            msg +
+            "\n" +
+            "</div>\n" +
+            "";
+        }
+
+        /*newmsg.innerHTML +=
+          "<div class=\"clear\">\n"+
+          "</div>";*/
+
+        newblank.className = "blank";
+
+        container_msg.appendChild(newmsg);
+        container_msg.appendChild(newblank);
+
+        container_msg.scrollTop = container_msg.scrollHeight;
+      }
+
+      /*function showArticle(name, msg) {
+        newmsg.className = "othertalk";
+        newmsg.innerHTML =
+          '<div class="box">\n' +
+          '<div class="profile_name">\n' +
+          name +
+          "\n" +
+          "</div>\n" +
+          '<div class="a">\n' +
+          "</div>\n" +
+          '<div class="b">\n' +
+          '<img src="{{value}}" />\n' +
+          msg +
+          "\n" +
+          "</div>\n" +
+          "</div>\n";
+      }*/
+
+      function sendMessage() {
+        var mes = document.getElementById("reply-text").value;
+
+        //test_type ^= 0x01;
+        showMessage(0, "챗봇", mes.replace("\n", "<br />\n"));
+        document.getElementById("reply-text").value = "";
+        if (mes === "뉴스") {
+          showMessage(1, "챗봇", mes.replace("\n", "<br />\n"));
+
+          document.getElementById("reply-text").value = "";
+        }
+      }
+
+      //기사 요약
+      function articleSumm() {
+        var result = document.getElementById("article-summ").innerText;
+        showMessage(1, "챗봇", result.replace("\n", "<br />\n"));
+        document.getElementById("reply-text").value = "";
+      }
+
+      //원문 보기
+      function goToWeb() {
+        var link = "{{url_html}}";
+
+        location.href = link;
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="header-hr"><hr /></div>
+    </header>
+
+    <div class="main">
+      <div class="main-container" id="main-container">
+        <div class="chat"></div>
+        <form class="reply">
+          <input
+            type="txet"
+            id="reply-text"
+            placeholder="Write a message..."
+            onkeypress="if(event.keyCode==13){sendMessage(); return false;}"
+          />
+          <button type="button" onclick="sendMessage()">
+            <i class="fas fa-arrow-up"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <img src="{{value}}" />
+
+    <!-- 기사 요약 -->
+    <div id="article-summ" style="display: none">{{apple}}</div>
+
+    <script
+      src="https://kit.fontawesome.com/6478f529f2.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
