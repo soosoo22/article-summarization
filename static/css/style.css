@@ -1,0 +1,198 @@
+body {
+  background-image: url(../img/background-img.jpg);
+  background-position: top;
+  margin: 0;
+}
+
+.header-hr {
+  margin-top: 40px;
+}
+
+.main {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  /*background-color: white;*/
+  height: 90vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  /*background-color: teal;*/
+  height: inherit;
+  z-index: 1;
+}
+
+.reply {
+  /*background-color: black;*/
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: inherit;
+  z-index: 2;
+}
+
+.reply input {
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: 1px solid gray;
+  width: inherit;
+}
+
+.reply input::placeholder {
+  font-size: 11px;
+}
+
+.reply button {
+  background-color: #6087ef;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+}
+
+.reply button > i {
+  color: white;
+}
+
+/* showMessage */
+.main-container .blank {
+  clear: both;
+  height: 4px;
+}
+
+.main-container .chat {
+  /*height: calc(100% - 72px);*/
+  overflow-y: scroll;
+  font-size: 12px;
+}
+
+.main-container .chat::-webkit-scrollbar {
+  display: none;
+}
+
+.main-container .chat .mytalk {
+  float: right;
+  width: 100%;
+}
+
+.main-container .chat .mytalk .a {
+  float: right;
+  position: relative;
+  min-height: 24px;
+  max-width: calc(100% - 64px);
+  left: 2px;
+  background-color: #ffec42;
+  border-radius: 12px;
+  border-top-right-radius: 0px;
+  z-index: 2;
+  padding: 0px 4px 0px 4px;
+  word-break: break-all;
+  padding: 10px;
+}
+
+.main-container .chat .mytalk .b {
+  float: right;
+  position: relative;
+  width: 8px;
+  height: 22px;
+  /*background: url(./chat_balloon_yellow.right.png) no-repeat;*/
+  z-index: 1;
+}
+
+.main-container .chat .othertalk {
+  float: left;
+  width: 100%;
+}
+
+.main-container .chat .othertalk .box {
+  float: left;
+  width: calc(100% - 48px);
+}
+
+.main-container .chat .othertalk .box .profile_name {
+  font-size: 12px;
+}
+
+.main-container .chat .othertalk .box .a {
+  float: left;
+  position: relative;
+  width: 8px;
+  height: 22px;
+  /*background: url(./chat_balloon_white.left.png) no-repeat;*/
+  z-index: 1;
+}
+
+.main-container .chat .othertalk .box .b {
+  float: left;
+  position: relative;
+  min-height: 24px;
+  max-width: calc(100% - 64px);
+  left: -2px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border-top-left-radius: 0px;
+  z-index: 2;
+  /*padding: 0px 4px 0px 4px;*/
+  padding: 10px;
+  word-break: break-all;
+}
+
+.b img {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.theme-box {
+  font-size: 15px;
+  padding: 5px;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.summarization-btn,
+.articleUrl-btn {
+  border: none;
+  padding: 5px;
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
+.reply-text {
+  float: left;
+  width: calc(100% - 68px);
+  height: 64px;
+  border-radius: 8px 0px 0px 8px;
+  margin: 0px 0px 0px 0px;
+  padding: 2px 2px 2px 2px;
+  resize: none;
+}
+
+.reply-text .sendmsg .button {
+  float: right;
+  width: 62px;
+  height: 68px;
+  background-color: #ffec42;
+  border-radius: 0px 8px 8px 0px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  text-align: center;
+  display: table;
+  cursor: pointer;
+}
+
+.reply-text .sendmsg .button p {
+  display: table-cell;
+  vertical-align: middle;
+}
